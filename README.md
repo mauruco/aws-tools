@@ -27,3 +27,31 @@ const { s3GetObjectPromise } = require('aws-tools');
   }
 })();
 ```
+
+## dynamoDB
+How to use:
+
+```javascript
+const { AWS, dynamDocClientPutPromise } = require('aws-tools');
+AWS.config.update({ region: 'us-east-1' });
+
+const params = {
+    TableName: 'tableName',
+    Item: { ... },
+};
+
+/**
+ * getObjectPromise
+ * @params docClient params
+ * @returns added item
+ */
+(async () => {
+  try {
+    const data = await dynamDocClientPutPromise(params);
+    const item = JSON.parse(data);
+    console.log(item);
+  } catch (error) {
+    console.log(error);
+  }
+})();
+```
